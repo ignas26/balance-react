@@ -1,0 +1,78 @@
+*{
+    margin:0;
+    padding:0;
+}
+body{
+    font-family:'Arial', sans-serif;
+}
+.antraste{
+    width:90%;
+    margin:auto;
+    border-bottom:1px solid #ccae62;
+    background-color: khaki;
+}
+
+.content{
+    margin: auto;
+    width:75%;
+    background-color:lightgrey;
+}
+
+.remainder{
+    background-color: whitesmoke;
+    width:5%;
+    border-radius: 5%;
+    margin: auto;
+    border-style: solid;
+    border-width: thin;
+    border-color: #000000;
+}
+.inside{
+    width: 100%;
+    border: 1px solid #000;
+    display: flex;
+}
+
+.left-side, .right-side{
+    width: 100%;
+    border: 1px solid #000;
+
+}
+
+.btn-left, .btn-right{
+    display: flex;
+
+}
+
+
+
+.islaidos, .suma, .itraukti, .nuostoliai, .pajamos, .suma-2, .itraukti-2 {
+    background-color: whitesmoke;
+    width:20%;
+    border-radius: 5%;
+    margin: 5px;
+    border-style: solid;
+    border-width: thin;
+    border-color: #000000;
+}
+
+
+.kelione, .nuoma, .total{
+    background-color: indianred;
+    width:20%;
+    border-radius: 5%;
+    margin: 10px;
+    border-style: solid;
+    border-width: thin;
+    border-color: #000000;
+}
+
+.atlyginimas, .palukanos, .total2{
+    background-color: palegreen;
+    width:20%;
+    border-radius: 5%;
+    margin: 10px;
+    border-style: solid;
+    border-width: thin;
+    border-color: #000000;
+}

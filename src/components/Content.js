@@ -60,11 +60,12 @@ class Content extends React.Component {
       return <li key={i}> {expense.name} {expense.amount} </li>
     });
 
-    // const countSum = this.state.expenses.map((expense, i) =>{
-    //   return <li key={i}> {expense.amount} </li>
-    // });
     const count = this.state.expenses.reduce((total, b)=>{
-      return (total + b.amount)
+      return (total + parseFloat(b.amount))
+    },0);
+
+    const countIncome = this.state.income.reduce((total, b)=>{
+      return (total + parseFloat(b.amount))
     },0);
 
     return (
@@ -84,7 +85,7 @@ class Content extends React.Component {
                   onChange={(e) => this.inputHandlerName(e.target.value)}
                   type="text"
                   value={this.state.tempName}
-                  placeholder="islaida"
+                  placeholder="pajama"
                   />
                 </div>
 
@@ -93,10 +94,10 @@ class Content extends React.Component {
                       onChange={(e) => this.inputHandlerAmount(e.target.value)}
                       value={this.state.tempAmount}
                       type="text"
-                      placeholder="islaidos dydis"
+                      placeholder="pajamos dydis"
                   />
                 </div>
-                <button onClick={() => {
+                <button className="itraukti-2" onClick={() => {
                   this.addIncome();
                   this.clearInput();
                 }}>
@@ -109,7 +110,7 @@ class Content extends React.Component {
                 <div>{income}</div>
                 <br/><br/><br/>
               </div>
-              <div className="total">suma
+              <div className="total">suma {countIncome}
               </div>
             </div>
             <div className="right-side">
@@ -119,7 +120,7 @@ class Content extends React.Component {
                       onChange={(e)=>this.inputHandlerName(e.target.value)}
                       type="text"
                       value={this.state.tempName}
-                  placeholder="pajama"
+                  placeholder="islaida"
                   />
 
                 </div>
@@ -128,12 +129,11 @@ class Content extends React.Component {
                       onChange={(e) => this.inputHandlerAmount(e.target.value)}
                       type="text"
                       value={this.state.tempAmount}
-                      placeholder="pajamos dydis"
+                      placeholder="islaidos dydis"
                   />
                 </div>
                 <button className="itraukti-2" onClick={() => {
                   this.addExpense();
-                  this.ExpensesAddition();
                   this.clearInput();
                 }}>itraukti
                   </button>

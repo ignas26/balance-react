@@ -5,27 +5,42 @@
 body{
     font-family:'Arial', sans-serif;
 }
-.antraste{
-    width:90%;
+
+.parent{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+
+.topic{
+    width:80%;
     margin:auto;
-    border-bottom:1px solid #ccae62;
+    border-bottom:5px solid #ccae62;
     background-color: khaki;
 }
 
-.content{
+
+span{
+    font-size: 25px;
+}
+
+.content1{
     margin: auto;
-    width:75%;
+    width:80%;
     background-color:lightgrey;
 }
 
 .remainder{
-    background-color: whitesmoke;
-    width:5%;
+    background-color: aqua;
+    width:20%;
     border-radius: 5%;
     margin: auto;
     border-style: solid;
     border-width: thin;
     border-color: #000000;
+    margin-top: 10px;
 }
 .inside{
     width: 100%;
@@ -46,7 +61,7 @@ body{
 
 
 
-.islaidos, .suma, .itraukti, .nuostoliai, .pajamos, .suma-2, .itraukti-2 {
+.itraukti, .itraukti-2 {
     background-color: whitesmoke;
     width:20%;
     border-radius: 5%;
@@ -56,8 +71,33 @@ body{
     border-color: #000000;
 }
 
+.nuostoliai {
+    background-color: indianred;
+    width:20%;
+    border-radius: 5%;
+    margin: 5px;
+    border-style: solid;
+    border-width: thin;
+    border-color: #000000;
 
-.kelione, .nuoma, .total{
+
+}
+
+.pajamos{
+    background-color: palegreen;
+    width:20%;
+    border-radius: 5%;
+    margin: 5px;
+    border-style: solid;
+    border-width: thin;
+    border-color: #000000;
+}
+
+
+
+
+
+.atlyginimas, .palukanos, .total2 {
     background-color: indianred;
     width:20%;
     border-radius: 5%;
@@ -67,7 +107,7 @@ body{
     border-color: #000000;
 }
 
-.atlyginimas, .palukanos, .total2{
+.kelione, .nuoma, .total {
     background-color: palegreen;
     width:20%;
     border-radius: 5%;

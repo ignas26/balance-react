@@ -3,75 +3,85 @@ import React from 'react';
 
 class Content extends React.Component {
   state = {
-    income: [{name: 'atlyginimas', amount: 900}, {name: 'palukanos', amount: 80}],
-    expenses: [{name: 'kelione', amount: 120}, {name: 'auto nuoma', amount: 80}],
-    tempName: '',
-    tempAmount: '',
-    sumaExpensesTotal: 0
+    income: [],
+    expenses: [],
+    tempNameIncome: '',
+    tempNameExpenses: '',
+    tempAmountIncome: '',
+    tempAmountExpenses: ''
   };
 
   addIncome = () => {
-    const newIncome = [...this.state.income, {name:this.state.tempName, amount:this.state.tempAmount}];
+    const newIncome = [...this.state.income, {name:this.state.tempNameIncome, amount:this.state.tempAmountIncome}];
     this.setState({
       income: newIncome
     })
   };
 
   addExpense = () => {
-    const newExpense = [...this.state.expenses, {name:this.state.tempName, amount:this.state.tempAmount}];
+    const newExpenses = [...this.state.expenses, {name:this.state.tempNameExpenses, amount:this.state.tempAmountExpenses}];
     this.setState({
-      expenses: newExpense
+      expenses: newExpenses
     })
   };
 
-  // countAmount = () =>{
-  //
-  // };
 
-  clearInput = () => {
-    this.setState({tempAmount: '', tempName: ''})
+  clearInputIncome = () => {
+    this.setState({tempAmountIncome: '', tempNameIncome: ''})
   };
 
-  inputHandlerName = (value) => {
-    this.setState({
-      tempName: value
-    })
+  clearInputExpenses = () => {
+    this.setState({tempAmountExpenses: '', tempNameExpenses: ''})
   };
-  inputHandlerAmount = (value) => {
+
+  inputHandlerIncomeName = (value) => {
     this.setState({
-      tempAmount: value
+      tempNameIncome: value
     })
   };
 
-  ExpensesAddition=(n)=>{
-    const sumaExpenses=[...this.state.sumaExpensesTotal, n];
+  inputHandlerIncomeAmount = (value) => {
     this.setState({
-      sumaExpensesTotal:sumaExpenses
-    });
+      tempAmountIncome: value
+    })
   };
 
+  inputHandlerExpensesName = (value) => {
+    this.setState({
+      tempNameExpenses: value
+    })
+  };
+
+  inputHandlerExpensesAmount = (value) => {
+    this.setState({
+      tempAmountExpenses: value
+    })
+  };
 
   render() {
     const income = this.state.income.map((inc, i) => {
-      return <li key={i}> {inc.name} {inc.amount}  </li>
+      return <div key={i}> {inc.name} {inc.amount}  </div>
     });
 
     const expense = this.state.expenses.map((expense, i) =>{
-      return <li key={i}> {expense.name} {expense.amount} </li>
+      return <div key={i}> {expense.name} {expense.amount} </div>
     });
 
-    const count = this.state.expenses.reduce((total, b)=>{
-      return (total + parseFloat(b.amount))
-    },0);
+      const countExpenses = this.state.expenses.reduce((total, b) => {
+        return (total + parseFloat(b.amount))
+      }, 0);
 
     const countIncome = this.state.income.reduce((total, b)=>{
       return (total + parseFloat(b.amount))
     },0);
 
+    const totalCount = countIncome - countExpenses;
+
+
     return (
-        <div className="content">
+        <div className="content1">
           <div className="remainder">
-            Liekana:
+               Likutis: <span> {totalCount}</span>
           </div>
           <br/>
 
@@ -80,74 +90,79 @@ class Content extends React.Component {
 
             <div className="left-side">
               <div className="btn-left">
-                <div className="islaidos">
-                  <input
-                  onChange={(e) => this.inputHandlerName(e.target.value)}
-                  type="text"
-                  value={this.state.tempName}
-                  placeholder="pajama"
-                  />
-                </div>
 
-                <div className="suma">
                   <input
-                      onChange={(e) => this.inputHandlerAmount(e.target.value)}
-                      value={this.state.tempAmount}
-                      type="text"
-                      placeholder="pajamos dydis"
+                  onChange={(e) => this.inputHandlerIncomeName(e.target.value)}
+                  type="text"
+                  value={this.state.tempNameIncome}
+                  placeholder="pajamų šaltinis"
                   />
-                </div>
+
+
+
+                  <input
+                      onChange={(e) => this.inputHandlerIncomeAmount(e.target.value)}
+                      value={this.state.tempAmountIncome}
+                      type="text"
+                      placeholder="pajamų dydis (skaičius)"
+                  />
+
                 <button className="itraukti-2" onClick={() => {
                   this.addIncome();
-                  this.clearInput();
+                  this.clearInputIncome();
                 }}>
                   itraukti
                 </button>
 
 
               </div>
-              <div className="nuostoliai">
-                <div>{income}</div>
+              <div className="pajamos">
+                {income}
                 <br/><br/><br/>
               </div>
-              <div className="total">suma {countIncome}
+              <div className="total">suma {this.state.income.length>0 && <span> {countIncome}</span>}
               </div>
             </div>
+
+
+
             <div className="right-side">
               <div className="btn-right">
-                <div className="pajamos">
+
                   <input
-                      onChange={(e)=>this.inputHandlerName(e.target.value)}
+                      onChange={(e)=>this.inputHandlerExpensesName(e.target.value)}
                       type="text"
-                      value={this.state.tempName}
-                  placeholder="islaida"
+                      value={this.state.tempNameExpenses}
+                  placeholder="islaidų šaltinis"
                   />
 
-                </div>
-                <div className="suma-2">
+
+
                   <input
-                      onChange={(e) => this.inputHandlerAmount(e.target.value)}
+                      onChange={(e) => this.inputHandlerExpensesAmount(e.target.value)}
                       type="text"
-                      value={this.state.tempAmount}
-                      placeholder="islaidos dydis"
+                      value={this.state.tempAmountExpenses}
+                      placeholder="islaidų dydis (skaičius)"
                   />
-                </div>
+
                 <button className="itraukti-2" onClick={() => {
                   this.addExpense();
-                  this.clearInput();
+                  this.clearInputExpenses();
                 }}>itraukti
                   </button>
               </div>
-              <div className="pelnas">
-              </div>
-              <div className="pajamos">
-                <div>{expense}</div>
+
+              <div className="nuostoliai">
+                {expense}
                 <br/><br/><br/>
               </div>
-              <div className="total2">suma {count}
+                <div className="total2">suma {this.state.expenses.length>0 && <span> {countExpenses} </span>}
               </div>
             </div>
           </div>
+
+
+
         </div>
     );
   }

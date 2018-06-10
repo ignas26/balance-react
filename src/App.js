@@ -5,7 +5,7 @@ import Content from "./components/Content";
 
 class App extends React.Component {
   state={
-    firstTab: '<Header/>',
+    firstTab: 'A simple balance solution',
     total:'',
     total2:''
   };
@@ -24,7 +24,8 @@ class App extends React.Component {
   };
 
   render() {
-    return ( <div>
+    return (
+        <div className="parent">
         <Header firstTab={this.state.firstTab}/>
           <Content
               renameTotal={this.renameTotal}
